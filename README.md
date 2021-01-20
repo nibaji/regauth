@@ -37,6 +37,7 @@ SignUpForm(
 ```dart
 SignInForm(
     signInLink: "<signin endpoint>",
+    signUpLink: "<signup endpoint>",
 ),
 ```
 
@@ -45,6 +46,7 @@ For the whole Page:
 ```dart
 SignInPage(
     signInLink: "<signin endpoint>",
+    signUpLink: "<signup endpoint>",
 ),
 ```
 
