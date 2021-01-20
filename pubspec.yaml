@@ -1,0 +1,24 @@
+name: regauth
+description: Login, signup pages & widgets.
+version: 0.0.1
+author: Nidhun Balaji T R <nidhunbalaji@gmail.com>
+homepage: https://github.com/nibaji/regauth
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  intl_phone_field:
+    git: https://github.com/nibaji/intl_phone_field.git
+  email_validator:
+  shared_preferences:
+  http:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
