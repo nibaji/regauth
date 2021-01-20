@@ -258,6 +258,9 @@ class ForgotPwdFlatButton extends StatelessWidget {
 
 // "New to EdenHoe? SignUp" row
 class IfNewSignupRow extends StatelessWidget {
+  final String signUpLink;
+  const IfNewSignupRow({Key key, this.signUpLink}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -275,7 +278,9 @@ class IfNewSignupRow extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => SignUpPage(),
+                  builder: (context) => SignUpPage(
+                    signUpLink: signUpLink,
+                  ),
                 ),
               );
             },

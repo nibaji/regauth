@@ -8,8 +8,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
 class SignInPage extends StatelessWidget {
-  final signInLink;
-  const SignInPage({Key key, this.signInLink}) : super(key: key);
+  final signInLink, signUpLink;
+  const SignInPage({Key key, this.signInLink, this.signUpLink})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +30,7 @@ class SignInPage extends StatelessWidget {
           padding: EdgeInsets.all(10),
           child: LoginForm(
             signInLink: signInLink,
+            signUpLink: signUpLink,
           ),
         ));
   }
@@ -36,8 +38,9 @@ class SignInPage extends StatelessWidget {
 
 // Full login Form
 class LoginForm extends StatefulWidget {
-  final String signInLink;
-  const LoginForm({Key key, this.signInLink}) : super(key: key);
+  final String signInLink, signUpLink;
+  const LoginForm({Key key, this.signInLink, this.signUpLink})
+      : super(key: key);
 
   @override
   _LoginFormState createState() => _LoginFormState();
@@ -174,7 +177,9 @@ class _LoginFormState extends State<LoginForm> {
               },
             ),
           ),
-          IfNewSignupRow(),
+          IfNewSignupRow(
+            signUpLink: widget.signUpLink,
+          ),
           RegAuthStatus(
             regAuthStatusMsg: loginStatus,
             isSignUpPageAndSignedUp: false,
