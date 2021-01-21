@@ -7,10 +7,20 @@ import 'package:regauth/signin_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
+/// Signing in endpoint should be assigned to [signInLink].
+///
+/// Signing up endpoint should be assigned to [signUpLink].
 class SignInPage extends StatelessWidget {
-  final signInLink, signUpLink;
-  const SignInPage({Key key, this.signInLink, this.signUpLink})
-      : super(key: key);
+  /// Signing in endpoint.
+  final String signInLink;
+
+  /// Signing up endpoint.
+  final String signUpLink;
+  const SignInPage({
+    Key key,
+    @required this.signInLink,
+    this.signUpLink,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,22 +64,47 @@ class _LoginFormState extends State<LoginForm> {
   bool isLoggedIn = false;
   bool showProgress = false;
 
+  /// Set values to the keys depending upon
+  /// the user details we get as response.
+  ///
+  /// [isLoggedIn] Set to true upon successful login.
+  ///
+  /// [theLoginToken] The JWT token.
+  ///
+  /// [userName] Full name of the logged in user.
+  ///
+  /// [userMail] Mail id of the user.
+  ///
+  /// [userMbl] Mobile number of the user.
   setLoggedIn({
-    bool isLoggedInToken,
+    bool isLoggedIn,
     String theLoginToken,
     String userName,
     String userMail,
     String userMbl,
   }) async {
+    /// Init sharedpreference and set the user details for future access.
     SharedPreferences thePrefs = await SharedPreferences.getInstance();
-    thePrefs.setBool('isLoggedIn', isLoggedInToken);
+
+    /// [isLoggedIn] key will contain true if user signs in successfully.
+    /// Use it to check if the user is logged in already.
+    thePrefs.setBool('isLoggedIn', isLoggedIn);
+
+    /// [loginToken] key will contain "JWT" once user signs in successfully.
     thePrefs.setString("loginToken", theLoginToken);
+
+    /// [userName] key will contain full name of the user upon successful sign in.
     thePrefs.setString("userName", userName);
+
+    /// [userMail] key will contain email Id of the user upon successful sign in.
     thePrefs.setString("userMail", userMail);
+
+    /// [userMbl] key will contain mobile number of the user upon successful sign in.
     thePrefs.setString("userMbl", userMbl);
   }
 
   goLogin(String mailId, String pwd) async {
+    /// The Map that signing in endpoint requires
     Map loginData = {"username": mailId, "password": pwd};
 
     try {
@@ -77,36 +112,53 @@ class _LoginFormState extends State<LoginForm> {
         widget.signInLink,
         body: loginData,
       );
+
+      /// Notify in case of invalid credintials.
       if (loginResponse.statusCode == 401) {
         setState(
           () {
             loginStatus = 'Invalid Credintials';
           },
         );
-      } else if (loginResponse.statusCode == 200) {
+      }
+
+      /// Upon submission of right credintials,
+      /// decode the json and set values to the keys
+      /// using sharedpreference.
+      else if (loginResponse.statusCode == 200) {
         Map<String, dynamic> jsonData = jsonDecode(loginResponse.body);
         // print(jsonData["token"]);
         //print(jsonData["user"]);
 
         User theUserDetailsModel = new User();
         theUserDetailsModel = User.fromJson(jsonData["user"]);
-        //print(theUserDetailsModel.firstName);
 
+        /// As right credintials are sent,
+        ///  [doSignin] and [isLoggedIn] are set to true.
+        ///  [setLoggedIn] function is invoked.
         setState(
           () {
             doSignIn = true;
             isLoggedIn = true;
+
             setLoggedIn(
-              isLoggedInToken: isLoggedIn,
+              isLoggedIn: isLoggedIn,
               theLoginToken: jsonData["token"],
-              userName: theUserDetailsModel.firstName,
-              userMail: theUserDetailsModel.username,
-              userMbl: theUserDetailsModel.lastName,
+              userName: theUserDetailsModel.fullName,
+              userMail: theUserDetailsModel.mail,
+              userMbl: theUserDetailsModel.mobileNum,
             );
-            loginStatus = ''; //Reset once login is done
+
+            /// Clear the login status msg once login is done.
+            ///
+            /// Clearing in case if there is failed login status msg.
+            loginStatus = '';
           },
         );
-      } else {
+      }
+
+      /// Notify in case of unknown status code.
+      else {
         setState(
           () {
             loginStatus = 'Something Wrong. Try again later';
@@ -114,24 +166,39 @@ class _LoginFormState extends State<LoginForm> {
         );
       }
 
+      /// Once all the processes
+      /// (either with right credintials or with wrong one) are done,
+      /// stop showing progress bar.
       setState(
         () {
           showProgress = false;
         },
       );
 
+      /// If [doSignIN] is set true, pop the page and
+      ///  set the same to false once the page is popped.
       if (doSignIn) {
         Navigator.pop(context);
         doSignIn = false; //Reset once login is done
       }
-    } on SocketException catch (_) {
+    }
+
+    /// On Socket Exception, catch it,
+    ///  stop showing progress indicator and notify by
+    ///  setting login status message.
+    on SocketException catch (_) {
       setState(
         () {
           showProgress = false;
           loginStatus = 'Check Your Data Connection and try again';
         },
       );
-    } catch (e) {
+    }
+
+    /// On any other Exception, catch it,
+    ///  stop showing progress indicator and notify by
+    ///  setting login status message.
+    catch (e) {
       debugPrint("$e");
       setState(
         () {
