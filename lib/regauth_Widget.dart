@@ -12,8 +12,11 @@ String pwd = "";
 TextEditingController passwordConfirmController = TextEditingController();
 String pwdConfirm = "";
 
-//AppBar
+///AppBar Title widget that gets [regAuthTitle].
+///
+///Only to use with indivitual login/signup forms and not with pages.
 class RegAuthAppBarTitle extends StatelessWidget {
+  /// Title in for the Appbar.
   final String regAuthTitle;
   const RegAuthAppBarTitle({Key key, this.regAuthTitle}) : super(key: key);
 
@@ -30,7 +33,7 @@ class RegAuthAppBarTitle extends StatelessWidget {
   }
 }
 
-//Email Box
+///Email Box with validation.
 class EmailBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -63,7 +66,8 @@ class EmailBox extends StatelessWidget {
   }
 }
 
-//Mobile Number Box
+///Mobile Number Box with country codes and validation.
+/// restricts input to 10 digits.
 class MobileNumberBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -102,7 +106,8 @@ class MobileNumberBox extends StatelessWidget {
   }
 }
 
-//Password Box
+///Password Box for login form.
+///Should not be null.
 class PwdBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -133,7 +138,8 @@ class PwdBox extends StatelessWidget {
   }
 }
 
-// Signup Password Box
+/// Password Box for signup form.
+/// Validates to have atleast 8 digits.
 class SignUpPwdBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -168,7 +174,8 @@ class SignUpPwdBox extends StatelessWidget {
   }
 }
 
-// Confirm Password Box
+/// Confirm Password Box in signup page.
+/// Validation checks the values to match that in signup password box.
 class ConfirmPwdBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -204,7 +211,8 @@ class ConfirmPwdBox extends StatelessWidget {
   }
 }
 
-// Full Name Box
+/// Full Name Box in signup form.
+/// Validates to have atleast 2 chars.
 class FullNameBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -237,13 +245,13 @@ class FullNameBox extends StatelessWidget {
   }
 }
 
-//Forgot Password Flat Button
+///Forgot Password Flat Button in login form.
 class ForgotPwdFlatButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlatButton(
       onPressed: () {
-        // Navigator.push( //TODO: Forgot PWD
+        // Navigator.push( //TODO: Forgot PWD Page
         //   context,
         //   MaterialPageRoute(
         //     builder: (context) => ForgotPWD(),
@@ -256,7 +264,7 @@ class ForgotPwdFlatButton extends StatelessWidget {
   }
 }
 
-// "New to EdenHoe? SignUp" row
+/// "New to "THE APP"? SignUp" row in login form.
 class IfNewSignupRow extends StatelessWidget {
   final String signUpLink;
   const IfNewSignupRow({Key key, this.signUpLink}) : super(key: key);
@@ -267,7 +275,7 @@ class IfNewSignupRow extends StatelessWidget {
       margin: EdgeInsets.only(top: 14),
       child: Row(
         children: <Widget>[
-          Text('New to EdenHOE?'),
+          Text('New to EdenHOE?'), //TODO: get app name
           FlatButton(
             textColor: Theme.of(context).accentColor,
             child: Text(
@@ -292,7 +300,7 @@ class IfNewSignupRow extends StatelessWidget {
   }
 }
 
-//"Already a member? SignIn" row
+/// "Already a member? SignIn" row in signup form.
 class IfOldSignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -300,7 +308,7 @@ class IfOldSignIn extends StatelessWidget {
       margin: EdgeInsets.only(top: 14),
       child: Row(
         children: <Widget>[
-          Text('Already a member of EdenHOE?'),
+          Text('Already a member of EdenHOE?'), //TODO: Get app name
           FlatButton(
             textColor: Theme.of(context).accentColor,
             child: Text(
@@ -318,7 +326,7 @@ class IfOldSignIn extends StatelessWidget {
   }
 }
 
-// Status Message on submitted data as per http response
+/// Status Message on submitted data as per http response.
 class RegAuthStatus extends StatelessWidget {
   final String regAuthStatusMsg;
   final bool isSignUpPageAndSignedUp;
@@ -340,7 +348,7 @@ class RegAuthStatus extends StatelessWidget {
   }
 }
 
-// Circular progress indicator at the bottom
+/// Circular progress indicator at the bottom to indicate progress.
 class CircularProgressStatus extends StatelessWidget {
   final bool showCircularProgress;
   CircularProgressStatus({this.showCircularProgress});
