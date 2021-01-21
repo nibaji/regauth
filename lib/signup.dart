@@ -5,9 +5,20 @@ import 'package:flutter/material.dart';
 import 'package:regauth/regauth_Widget.dart';
 import 'package:http/http.dart' as http;
 
+/// Signing in endpoint should be assigned to [signInLink].
+///
+/// Signing up endpoint should be assigned to [signUpLink].
 class SignUpPage extends StatelessWidget {
+  /// Signing up endpoint.
   final String signUpLink;
-  const SignUpPage({Key key, this.signUpLink}) : super(key: key);
+
+  /// Signing in endpoint.
+  final String signInLink;
+  const SignUpPage({
+    Key key,
+    @required this.signUpLink,
+    this.signInLink,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +62,7 @@ class _SignUpFormState extends State<SignUpForm> {
   bool showProgress = false;
 
   goSignup(String mailId, String fullName, String pwd) async {
+    /// The Map that signing up endpoint expects.
     Map signUpData = {
       "username": mailId,
       "first_name": fullName,
@@ -63,6 +75,8 @@ class _SignUpFormState extends State<SignUpForm> {
         widget.signUpLink,
         body: signUpData,
       );
+
+      /// Notify  if email id or mobile number already exists.
       if (signUpResponse.statusCode == 400) {
         Map<String, dynamic> jsonData = jsonDecode(signUpResponse.body);
         //print(jsonData);
@@ -80,11 +94,13 @@ class _SignUpFormState extends State<SignUpForm> {
           );
         }
       } else if (signUpResponse.statusCode == 201) {
+        /// As signup map is proper,
+        ///  [doSignUp] and [isSignedUp] are set to true.
+        ///  Notify by setting signup status message.
         setState(
           () {
             doSignUp = true;
             isSignedUp = true;
-
             signUpStatus =
                 '''Confirm your email id by opening the link sent and then proceed to login'''; //Set signup Status
           },
@@ -97,18 +113,30 @@ class _SignUpFormState extends State<SignUpForm> {
         },
       );
 
+      /// If [doSignUp] is set true,
+      ///  set the same to false.
       if (doSignUp) {
         //Navigator.pop(context);
         doSignUp = false; //Reset once login is done
       }
-    } on SocketException catch (_) {
+    }
+
+    /// On Socket Exception, catch it,
+    ///  stop showing progress indicator and notify by
+    ///  setting signup status message.
+    on SocketException catch (_) {
       setState(
         () {
           showProgress = false;
           signUpStatus = 'Check Your Data Connection and try again';
         },
       );
-    } catch (e) {
+    }
+
+    /// On any other Exception, catch it,
+    ///  stop showing progress indicator and notify by
+    ///  setting signup status message.
+    catch (e) {
       debugPrint("$e");
       setState(
         () {
