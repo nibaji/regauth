@@ -16,6 +16,7 @@ class SignInPage extends StatelessWidget {
 
   /// Signing up endpoint.
   final String signUpLink;
+
   const SignInPage({
     Key key,
     @required this.signInLink,

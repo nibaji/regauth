@@ -53,7 +53,6 @@ SignInPage(
 ```dart
 SignUpPage(
     signUpLink: "<signup endpoint>",
-    signInLink: "<signin endpoint>",
 ),
 ```
 

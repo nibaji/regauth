@@ -5,19 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:regauth/regauth_Widget.dart';
 import 'package:http/http.dart' as http;
 
-/// Signing in endpoint should be assigned to [signInLink].
-///
 /// Signing up endpoint should be assigned to [signUpLink].
 class SignUpPage extends StatelessWidget {
   /// Signing up endpoint.
   final String signUpLink;
 
-  /// Signing in endpoint.
-  final String signInLink;
   const SignUpPage({
     Key key,
     @required this.signUpLink,
-    this.signInLink,
   }) : super(key: key);
 
   @override
@@ -47,7 +42,10 @@ class SignUpPage extends StatelessWidget {
 //Full Signup form
 class SignUpForm extends StatefulWidget {
   final String signUpLink;
-  const SignUpForm({Key key, this.signUpLink}) : super(key: key);
+  const SignUpForm({
+    Key key,
+    this.signUpLink,
+  }) : super(key: key);
 
   @override
   _SignUpFormState createState() => _SignUpFormState();
