@@ -78,15 +78,35 @@ class _SignUpFormState extends State<SignUpForm> {
 
       /// Notify  if email id or mobile number already exists.
       if (signUpResponse.statusCode == 400) {
+        /// http response 400 gives back a map
         Map<String, dynamic> jsonData = jsonDecode(signUpResponse.body);
         //print(jsonData);
+
         if (jsonData["username"] != null) {
+          /// Following is the response we get if the mail already exists.
+          ///
+          /// {
+          ///     "username": [
+          ///        "A user with that username already exists."
+          ///     ]
+          /// }
+          ///
+          /// Hence we check if the "username" key is not empty
+          ///  and notify with signup status.
           setState(
             () {
               signUpStatus = 'Email Id already exists';
             },
           );
         } else if (jsonData["last_name"] != null) {
+          /// Following is the response we get if the phone number already exists.
+          /// {
+          ///     "last_name": [
+          ///         "phone number is already in use"
+          ///     ]
+          /// }
+          /// Hence we check if the "last_name" key is not empty
+          ///  and notify with signup status.
           setState(
             () {
               signUpStatus = 'Mobile Number already exists';
@@ -94,7 +114,15 @@ class _SignUpFormState extends State<SignUpForm> {
           );
         }
       } else if (signUpResponse.statusCode == 201) {
-        /// As signup map is proper,
+        /// If signup map is proper and got accepted,
+        ///  our response will be like the following:
+        ///
+        /// {
+        ///     "username": "ji@ji.comm",
+        ///     "first_name": "Ji Ji",
+        ///     "last_name": "843456542"
+        /// }
+        ///
         ///  [doSignUp] and [isSignedUp] are set to true.
         ///  Notify by setting signup status message.
         setState(
@@ -107,6 +135,8 @@ class _SignUpFormState extends State<SignUpForm> {
         );
       }
 
+      /// Once the process is done according to http response code,
+      /// stop showing progress indicator.
       setState(
         () {
           showProgress = false;
