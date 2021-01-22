@@ -129,7 +129,10 @@ class _LoginFormState extends State<LoginForm> {
     thePrefs.setString("userMbl", userMbl);
   }
 
-  goLogin(String mailId, String pwd) async {
+  goLogin({
+    String mailId,
+    String pwd,
+  }) async {
     /// The Map that signing in endpoint requires
     Map loginData = {"username": mailId, "password": pwd};
 
@@ -265,7 +268,10 @@ class _LoginFormState extends State<LoginForm> {
                       showProgress = true;
                     },
                   );
-                  goLogin(mailId, pwd);
+                  goLogin(
+                    mailId: mailId,
+                    pwd: pwd,
+                  );
                 }
               },
             ),

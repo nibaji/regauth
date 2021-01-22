@@ -69,7 +69,12 @@ class _SignUpFormState extends State<SignUpForm> {
   bool doSignUp = false;
   bool showProgress = false;
 
-  goSignup(String mailId, String fullName, String pwd) async {
+  goSignup({
+    String mailId,
+    String fullName,
+    String pwd,
+    String mobileNum,
+  }) async {
     /// The Map that signing up endpoint expects.
     Map signUpData = {
       "username": mailId,
@@ -218,7 +223,12 @@ class _SignUpFormState extends State<SignUpForm> {
                       showProgress = true;
                     },
                   );
-                  goSignup(mailId, fullName, pwd);
+                  goSignup(
+                    fullName: fullName,
+                    mailId: mailId,
+                    mobileNum: mobileNum,
+                    pwd: pwd,
+                  );
                 }
               },
             ),
