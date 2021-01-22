@@ -338,8 +338,8 @@ class IfOldSignIn extends StatelessWidget {
 /// Status Message on submitted data as per http response.
 class RegAuthStatus extends StatelessWidget {
   final String regAuthStatusMsg;
-  final bool isSignUpPageAndSignedUp;
-  RegAuthStatus({this.regAuthStatusMsg, this.isSignUpPageAndSignedUp});
+  final bool isRegAuthSuccess;
+  RegAuthStatus({this.regAuthStatusMsg, this.isRegAuthSuccess});
 
   @override
   Widget build(BuildContext context) {
@@ -349,7 +349,7 @@ class RegAuthStatus extends StatelessWidget {
         regAuthStatusMsg,
         style: TextStyle(
           fontSize: 14,
-          color: isSignUpPageAndSignedUp ? Colors.green : Colors.red,
+          color: isRegAuthSuccess ? Colors.green : Colors.red,
         ),
         textAlign: TextAlign.center,
       ),

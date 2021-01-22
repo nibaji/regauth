@@ -228,7 +228,7 @@ class _SignUpFormState extends State<SignUpForm> {
           ),
           RegAuthStatus(
             regAuthStatusMsg: signUpStatus,
-            isSignUpPageAndSignedUp: isSignedUp,
+            isRegAuthSuccess: isSignedUp,
           ),
           CircularProgressStatus(
             showCircularProgress: showProgress,

@@ -277,7 +277,7 @@ class _LoginFormState extends State<LoginForm> {
             ),
           RegAuthStatus(
             regAuthStatusMsg: loginStatus,
-            isSignUpPageAndSignedUp: false,
+            isRegAuthSuccess: isLoggedIn,
           ),
           CircularProgressStatus(
             showCircularProgress: showProgress,
