@@ -28,6 +28,10 @@ SignInForm(
     leadToSignUpPage: false, //leave it blank or make it "true" to have link for SignUp page
     signInMapMailIDKey: "mailId",
     signInMapPasswordKey: "password",
+    signUpMapFullNameKey: "full_name",
+    signUpMapMobileNumberKey: "mobile",
+    signUpMapMailIDKey: "mailId",
+    signUpMapPasswordKey: "password",
 ),
 ```
 
@@ -41,6 +45,10 @@ SignInPage(
     leadToSignUpPage: false, //leave it blank or make it "true" to have link for SignUp page
     signInMapMailIDKey: "mailId",
     signInMapPasswordKey: "password",
+    signUpMapFullNameKey: "full_name",
+    signUpMapMobileNumberKey: "mobile",
+    signUpMapMailIDKey: "mailId",
+    signUpMapPasswordKey: "password",
 ),
 ```
 

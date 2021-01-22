@@ -268,10 +268,18 @@ class ForgotPwdFlatButton extends StatelessWidget {
 class IfNewSignupRow extends StatelessWidget {
   final String signUpLink;
   final String theAppName;
+  final String signUpMapMailIDKey;
+  final String signUpMapPasswordKey;
+  final String signUpMapFullNameKey;
+  final String signUpMapMobileNumberKey;
   const IfNewSignupRow({
     Key key,
     @required this.signUpLink,
     @required this.theAppName,
+    @required this.signUpMapMailIDKey,
+    @required this.signUpMapPasswordKey,
+    @required this.signUpMapFullNameKey,
+    @required this.signUpMapMobileNumberKey,
   }) : super(key: key);
 
   @override
@@ -294,6 +302,10 @@ class IfNewSignupRow extends StatelessWidget {
                   builder: (context) => SignUpPage(
                     signUpLink: signUpLink,
                     theAppName: theAppName,
+                    signUpMapMailIDKey: signUpMapMailIDKey,
+                    signUpMapPasswordKey: signUpMapPasswordKey,
+                    signUpMapFullNameKey: signUpMapFullNameKey,
+                    signUpMapMobileNumberKey: signUpMapMobileNumberKey,
                   ),
                 ),
               );

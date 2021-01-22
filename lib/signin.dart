@@ -44,6 +44,11 @@ class SignInPage extends StatelessWidget {
   /// Specify the key for the password the endpoint expects in the map.
   final String signInMapPasswordKey;
 
+  final String signUpMapMailIDKey;
+  final String signUpMapPasswordKey;
+  final String signUpMapFullNameKey;
+  final String signUpMapMobileNumberKey;
+
   const SignInPage({
     Key key,
     @required this.signInLink,
@@ -52,6 +57,10 @@ class SignInPage extends StatelessWidget {
     this.leadToSignUpPage,
     @required this.signInMapMailIDKey,
     @required this.signInMapPasswordKey,
+    this.signUpMapMailIDKey,
+    this.signUpMapPasswordKey,
+    this.signUpMapFullNameKey,
+    this.signUpMapMobileNumberKey,
   }) : super(key: key);
 
   @override
@@ -77,6 +86,10 @@ class SignInPage extends StatelessWidget {
             leadToSignUpPage: leadToSignUpPage ?? true,
             signInMapMailIDKey: signInMapMailIDKey,
             signInMapPasswordKey: signInMapPasswordKey,
+            signUpMapMailIDKey: signUpMapMailIDKey ?? "",
+            signUpMapPasswordKey: signInMapPasswordKey ?? "",
+            signUpMapFullNameKey: signUpMapFullNameKey ?? "",
+            signUpMapMobileNumberKey: signUpMapMobileNumberKey ?? "",
           ),
         ));
   }
@@ -87,6 +100,10 @@ class LoginForm extends StatefulWidget {
   final String signInLink, signUpLink, theAppName;
   final String signInMapMailIDKey;
   final String signInMapPasswordKey;
+  final String signUpMapMailIDKey;
+  final String signUpMapPasswordKey;
+  final String signUpMapFullNameKey;
+  final String signUpMapMobileNumberKey;
   final bool leadToSignUpPage;
   const LoginForm({
     Key key,
@@ -96,6 +113,10 @@ class LoginForm extends StatefulWidget {
     @required this.leadToSignUpPage,
     @required this.signInMapMailIDKey,
     @required this.signInMapPasswordKey,
+    @required this.signUpMapMailIDKey,
+    @required this.signUpMapPasswordKey,
+    @required this.signUpMapFullNameKey,
+    @required this.signUpMapMobileNumberKey,
   }) : super(key: key);
 
   @override
@@ -304,6 +325,10 @@ class _LoginFormState extends State<LoginForm> {
             IfNewSignupRow(
               signUpLink: widget.signUpLink,
               theAppName: widget.theAppName,
+              signUpMapMailIDKey: widget.signUpMapMailIDKey,
+              signUpMapPasswordKey: widget.signUpMapPasswordKey,
+              signUpMapFullNameKey: widget.signUpMapFullNameKey,
+              signUpMapMobileNumberKey: widget.signUpMapMobileNumberKey,
             ),
           RegAuthStatus(
             regAuthStatusMsg: loginStatus,

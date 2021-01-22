@@ -17,10 +17,26 @@ class SignUpPage extends StatelessWidget {
   ///  the user is signing in or signing up.
   final String theAppName;
 
+  /// Specify the key for the mailid the endpoint expects in the map.
+  final String signUpMapMailIDKey;
+
+  /// Specify the key for the password the endpoint expects in the map.
+  final String signUpMapPasswordKey;
+
+  /// Specify the key for the full name the endpoint expects in the map.
+  final String signUpMapFullNameKey;
+
+  /// Specify the key for the mobile number the endpoint expects in the map.
+  final String signUpMapMobileNumberKey;
+
   const SignUpPage({
     Key key,
     @required this.signUpLink,
     @required this.theAppName,
+    @required this.signUpMapMailIDKey,
+    @required this.signUpMapPasswordKey,
+    @required this.signUpMapFullNameKey,
+    @required this.signUpMapMobileNumberKey,
   }) : super(key: key);
 
   @override
@@ -42,6 +58,10 @@ class SignUpPage extends StatelessWidget {
         child: SignUpForm(
           signUpLink: signUpLink,
           theAppName: theAppName,
+          signUpMapFullNameKey: signUpMapFullNameKey,
+          signUpMapMailIDKey: signUpMapMailIDKey,
+          signUpMapMobileNumberKey: signUpMapMobileNumberKey,
+          signUpMapPasswordKey: signUpMapPasswordKey,
         ),
       ),
     );
@@ -51,10 +71,18 @@ class SignUpPage extends StatelessWidget {
 //Full Signup form
 class SignUpForm extends StatefulWidget {
   final String signUpLink, theAppName;
+  final String signUpMapMailIDKey;
+  final String signUpMapPasswordKey;
+  final String signUpMapFullNameKey;
+  final String signUpMapMobileNumberKey;
   const SignUpForm({
     Key key,
     @required this.signUpLink,
     @required this.theAppName,
+    @required this.signUpMapMailIDKey,
+    @required this.signUpMapPasswordKey,
+    @required this.signUpMapFullNameKey,
+    @required this.signUpMapMobileNumberKey,
   }) : super(key: key);
 
   @override
@@ -74,13 +102,17 @@ class _SignUpFormState extends State<SignUpForm> {
     String fullName,
     String pwd,
     String mobileNum,
+    String signUpMapMailIDKey,
+    String signUpMapPasswordKey,
+    String signUpMapFullNameKey,
+    String signUpMapMobileNumberKey,
   }) async {
     /// The Map that signing up endpoint expects.
     Map signUpData = {
-      "username": mailId,
-      "first_name": fullName,
-      "last_name": mobileNum,
-      "password": pwd
+      signUpMapMailIDKey: mailId,
+      signUpMapFullNameKey: fullName,
+      signUpMapMobileNumberKey: mobileNum,
+      signUpMapPasswordKey: pwd
     };
 
     try {
@@ -228,6 +260,10 @@ class _SignUpFormState extends State<SignUpForm> {
                     mailId: mailId,
                     mobileNum: mobileNum,
                     pwd: pwd,
+                    signUpMapFullNameKey: widget.signUpMapFullNameKey,
+                    signUpMapMailIDKey: widget.signUpMapMailIDKey,
+                    signUpMapMobileNumberKey: widget.signUpMapMobileNumberKey,
+                    signUpMapPasswordKey: widget.signUpMapPasswordKey,
                   );
                 }
               },
