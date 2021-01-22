@@ -40,6 +40,7 @@ SignInForm(
     signInLink: "<signin endpoint>",
     signUpLink: "<signup endpoint>",
     theAppName: "<the app / Org name>",
+    leadToSignUpPage: false, //leave it blank or make it "true" to have link for SignUp page
 ),
 ```
 
@@ -50,6 +51,7 @@ SignInPage(
     signInLink: "<signin endpoint>",
     signUpLink: "<signup endpoint>",
     theAppName: "<the app / Org name>",
+    leadToSignUpPage: false, //leave it blank or make it "true" to have link for SignUp page
 ),
 ```
 

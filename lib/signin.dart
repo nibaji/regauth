@@ -13,6 +13,9 @@ import 'package:http/http.dart' as http;
 ///
 /// App Name / The org to which the user is signing in or signing up
 ///  should be assigned to [theAppName].
+///
+/// Assign false to [leadToSignUpPage] if loginform should not
+///  lead to signup page. By default it will be true.
 class SignInPage extends StatelessWidget {
   /// Signing in endpoint.
   final String signInLink;
@@ -24,11 +27,17 @@ class SignInPage extends StatelessWidget {
   ///  the user is signing in or signing up.
   final String theAppName;
 
+  /// Mention as bool if loginform
+  ///  should lead to signup page.
+  ///  Defaults to true.
+  final bool leadToSignUpPage;
+
   const SignInPage({
     Key key,
     @required this.signInLink,
     this.signUpLink,
     @required this.theAppName,
+    this.leadToSignUpPage,
   }) : super(key: key);
 
   @override
@@ -51,6 +60,7 @@ class SignInPage extends StatelessWidget {
             signInLink: signInLink,
             signUpLink: signUpLink,
             theAppName: theAppName,
+            leadToSignUpPage: leadToSignUpPage ?? true,
           ),
         ));
   }
@@ -59,11 +69,13 @@ class SignInPage extends StatelessWidget {
 // Full login Form
 class LoginForm extends StatefulWidget {
   final String signInLink, signUpLink, theAppName;
+  final bool leadToSignUpPage;
   const LoginForm({
     Key key,
     @required this.signInLink,
     this.signUpLink,
     @required this.theAppName,
+    @required this.leadToSignUpPage,
   }) : super(key: key);
 
   @override
@@ -258,10 +270,11 @@ class _LoginFormState extends State<LoginForm> {
               },
             ),
           ),
-          IfNewSignupRow(
-            signUpLink: widget.signUpLink,
-            theAppName: widget.theAppName,
-          ),
+          if (widget.leadToSignUpPage ?? true)
+            IfNewSignupRow(
+              signUpLink: widget.signUpLink,
+              theAppName: widget.theAppName,
+            ),
           RegAuthStatus(
             regAuthStatusMsg: loginStatus,
             isSignUpPageAndSignedUp: false,
