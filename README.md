@@ -18,22 +18,7 @@ dependencies:
 
 ## Usage
 
-For the Title Widget alone:
-
-```dart
-RegAuthAppBarTitle(
-    regAuthTitle: "Login / Signup",
-),
-```
-
-For the forms alone:
-
-```dart
-SignUpForm(
-    signUpLink: "<signup endpoint>",
-    theAppName: "<the app / Org name>",
-),
-```
+For the Signin form alone:
 
 ```dart
 SignInForm(
@@ -44,7 +29,7 @@ SignInForm(
 ),
 ```
 
-For the whole Page:
+For the whole Signin Page:
 
 ```dart
 SignInPage(
@@ -55,12 +40,9 @@ SignInPage(
 ),
 ```
 
-```dart
-SignUpPage(
-    signUpLink: "<signup endpoint>",
-    theAppName: "<the app / Org name>",
-),
-```
+Note: 
+Signin Page and form shall lead to signup page if 
+"leadToSignUpPage" parameter is not set to false.
 
 ## CONTRIBUTORS
 
