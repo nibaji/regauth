@@ -31,6 +31,7 @@ For the forms alone:
 ```dart
 SignUpForm(
     signUpLink: "<signup endpoint>",
+    theAppName: "<the app / Org name>",
 ),
 ```
 
@@ -38,6 +39,7 @@ SignUpForm(
 SignInForm(
     signInLink: "<signin endpoint>",
     signUpLink: "<signup endpoint>",
+    theAppName: "<the app / Org name>",
 ),
 ```
 
@@ -47,12 +49,14 @@ For the whole Page:
 SignInPage(
     signInLink: "<signin endpoint>",
     signUpLink: "<signup endpoint>",
+    theAppName: "<the app / Org name>",
 ),
 ```
 
 ```dart
 SignUpPage(
     signUpLink: "<signup endpoint>",
+    theAppName: "<the app / Org name>",
 ),
 ```
 

@@ -10,6 +10,9 @@ import 'package:http/http.dart' as http;
 /// Signing in endpoint should be assigned to [signInLink].
 ///
 /// Signing up endpoint should be assigned to [signUpLink].
+///
+/// App Name / The org to which the user is signing in or signing up
+///  should be assigned to [theAppName].
 class SignInPage extends StatelessWidget {
   /// Signing in endpoint.
   final String signInLink;
@@ -17,10 +20,15 @@ class SignInPage extends StatelessWidget {
   /// Signing up endpoint.
   final String signUpLink;
 
+  /// Mention the App name / The org to which
+  ///  the user is signing in or signing up.
+  final String theAppName;
+
   const SignInPage({
     Key key,
     @required this.signInLink,
     this.signUpLink,
+    @required this.theAppName,
   }) : super(key: key);
 
   @override
@@ -42,6 +50,7 @@ class SignInPage extends StatelessWidget {
           child: LoginForm(
             signInLink: signInLink,
             signUpLink: signUpLink,
+            theAppName: theAppName,
           ),
         ));
   }
@@ -49,9 +58,13 @@ class SignInPage extends StatelessWidget {
 
 // Full login Form
 class LoginForm extends StatefulWidget {
-  final String signInLink, signUpLink;
-  const LoginForm({Key key, this.signInLink, this.signUpLink})
-      : super(key: key);
+  final String signInLink, signUpLink, theAppName;
+  const LoginForm({
+    Key key,
+    @required this.signInLink,
+    this.signUpLink,
+    @required this.theAppName,
+  }) : super(key: key);
 
   @override
   _LoginFormState createState() => _LoginFormState();
@@ -247,6 +260,7 @@ class _LoginFormState extends State<LoginForm> {
           ),
           IfNewSignupRow(
             signUpLink: widget.signUpLink,
+            theAppName: widget.theAppName,
           ),
           RegAuthStatus(
             regAuthStatusMsg: loginStatus,

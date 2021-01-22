@@ -6,13 +6,21 @@ import 'package:regauth/regauth_Widget.dart';
 import 'package:http/http.dart' as http;
 
 /// Signing up endpoint should be assigned to [signUpLink].
+///
+/// App Name / The org to which the user is signing in or signing up
+///  should be assigned to [theAppName].
 class SignUpPage extends StatelessWidget {
   /// Signing up endpoint.
   final String signUpLink;
 
+  /// Mention the App name / The org to which
+  ///  the user is signing in or signing up.
+  final String theAppName;
+
   const SignUpPage({
     Key key,
     @required this.signUpLink,
+    @required this.theAppName,
   }) : super(key: key);
 
   @override
@@ -33,6 +41,7 @@ class SignUpPage extends StatelessWidget {
         padding: EdgeInsets.all(10),
         child: SignUpForm(
           signUpLink: signUpLink,
+          theAppName: theAppName,
         ),
       ),
     );
@@ -41,10 +50,11 @@ class SignUpPage extends StatelessWidget {
 
 //Full Signup form
 class SignUpForm extends StatefulWidget {
-  final String signUpLink;
+  final String signUpLink, theAppName;
   const SignUpForm({
     Key key,
-    this.signUpLink,
+    @required this.signUpLink,
+    @required this.theAppName,
   }) : super(key: key);
 
   @override
@@ -213,7 +223,9 @@ class _SignUpFormState extends State<SignUpForm> {
               },
             ),
           ),
-          IfOldSignIn(),
+          IfOldSignIn(
+            theAppName: widget.theAppName,
+          ),
           RegAuthStatus(
             regAuthStatusMsg: signUpStatus,
             isSignUpPageAndSignedUp: isSignedUp,

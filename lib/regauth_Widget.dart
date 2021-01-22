@@ -267,7 +267,12 @@ class ForgotPwdFlatButton extends StatelessWidget {
 /// "New to "THE APP"? SignUp" row in login form.
 class IfNewSignupRow extends StatelessWidget {
   final String signUpLink;
-  const IfNewSignupRow({Key key, this.signUpLink}) : super(key: key);
+  final String theAppName;
+  const IfNewSignupRow({
+    Key key,
+    @required this.signUpLink,
+    @required this.theAppName,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -275,7 +280,7 @@ class IfNewSignupRow extends StatelessWidget {
       margin: EdgeInsets.only(top: 14),
       child: Row(
         children: <Widget>[
-          Text('New to EdenHOE?'), //TODO: get app name
+          Text('New to $theAppName?'),
           FlatButton(
             textColor: Theme.of(context).accentColor,
             child: Text(
@@ -288,6 +293,7 @@ class IfNewSignupRow extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => SignUpPage(
                     signUpLink: signUpLink,
+                    theAppName: theAppName,
                   ),
                 ),
               );
@@ -302,13 +308,16 @@ class IfNewSignupRow extends StatelessWidget {
 
 /// "Already a member? SignIn" row in signup form.
 class IfOldSignIn extends StatelessWidget {
+  final String theAppName;
+  const IfOldSignIn({Key key, @required this.theAppName}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 14),
       child: Row(
         children: <Widget>[
-          Text('Already a member of EdenHOE?'), //TODO: Get app name
+          Text('Already a member of $theAppName?'),
           FlatButton(
             textColor: Theme.of(context).accentColor,
             child: Text(
