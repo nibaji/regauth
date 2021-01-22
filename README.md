@@ -26,6 +26,8 @@ SignInForm(
     signUpLink: "<signup endpoint>",
     theAppName: "<the app / Org name>",
     leadToSignUpPage: false, //leave it blank or make it "true" to have link for SignUp page
+    signInMapMailIDKey: "mailId",
+    signInMapPasswordKey: "password",
 ),
 ```
 
@@ -37,6 +39,8 @@ SignInPage(
     signUpLink: "<signup endpoint>",
     theAppName: "<the app / Org name>",
     leadToSignUpPage: false, //leave it blank or make it "true" to have link for SignUp page
+    signInMapMailIDKey: "mailId",
+    signInMapPasswordKey: "password",
 ),
 ```
 

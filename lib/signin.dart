@@ -16,6 +16,12 @@ import 'package:http/http.dart' as http;
 ///
 /// Assign false to [leadToSignUpPage] if loginform should not
 ///  lead to signup page. By default it will be true.
+///
+/// Assign the key for the mailid the endpoint expects in the map
+///  to [signInMapMailIDKey].
+///
+/// Assign the key for the password the endpoint expects in the map
+///  to [signInMapPasswordKey].
 class SignInPage extends StatelessWidget {
   /// Signing in endpoint.
   final String signInLink;
@@ -32,12 +38,20 @@ class SignInPage extends StatelessWidget {
   ///  Defaults to true.
   final bool leadToSignUpPage;
 
+  /// Specify the key for the mailid the endpoint expects in the map.
+  final String signInMapMailIDKey;
+
+  /// Specify the key for the password the endpoint expects in the map.
+  final String signInMapPasswordKey;
+
   const SignInPage({
     Key key,
     @required this.signInLink,
     this.signUpLink,
     @required this.theAppName,
     this.leadToSignUpPage,
+    @required this.signInMapMailIDKey,
+    @required this.signInMapPasswordKey,
   }) : super(key: key);
 
   @override
@@ -61,6 +75,8 @@ class SignInPage extends StatelessWidget {
             signUpLink: signUpLink,
             theAppName: theAppName,
             leadToSignUpPage: leadToSignUpPage ?? true,
+            signInMapMailIDKey: signInMapMailIDKey,
+            signInMapPasswordKey: signInMapPasswordKey,
           ),
         ));
   }
@@ -69,6 +85,8 @@ class SignInPage extends StatelessWidget {
 // Full login Form
 class LoginForm extends StatefulWidget {
   final String signInLink, signUpLink, theAppName;
+  final String signInMapMailIDKey;
+  final String signInMapPasswordKey;
   final bool leadToSignUpPage;
   const LoginForm({
     Key key,
@@ -76,6 +94,8 @@ class LoginForm extends StatefulWidget {
     this.signUpLink,
     @required this.theAppName,
     @required this.leadToSignUpPage,
+    @required this.signInMapMailIDKey,
+    @required this.signInMapPasswordKey,
   }) : super(key: key);
 
   @override
@@ -132,9 +152,11 @@ class _LoginFormState extends State<LoginForm> {
   goLogin({
     String mailId,
     String pwd,
+    String signInMapMailIDKey,
+    String signInMapPasswordKey,
   }) async {
     /// The Map that signing in endpoint requires
-    Map loginData = {"username": mailId, "password": pwd};
+    Map loginData = {signInMapMailIDKey: mailId, signInMapPasswordKey: pwd};
 
     try {
       var loginResponse = await http.post(
@@ -271,6 +293,8 @@ class _LoginFormState extends State<LoginForm> {
                   goLogin(
                     mailId: mailId,
                     pwd: pwd,
+                    signInMapMailIDKey: widget.signInMapMailIDKey,
+                    signInMapPasswordKey: widget.signInMapPasswordKey,
                   );
                 }
               },
