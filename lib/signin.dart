@@ -7,6 +7,8 @@ import 'package:regauth/signin_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
+/// Full RegAuth Page.
+///
 /// Signing in endpoint should be assigned to [signInLink].
 ///
 /// Signing up endpoint should be assigned to [signUpLink].
@@ -17,11 +19,23 @@ import 'package:http/http.dart' as http;
 /// Assign false to [leadToSignUpPage] if loginform should not
 ///  lead to signup page. By default it will be true.
 ///
-/// Assign the key for the mailid the endpoint expects in the map
+/// Assign the key for the mailid the signin endpoint expects in the map
 ///  to [signInMapMailIDKey].
 ///
-/// Assign the key for the password the endpoint expects in the map
+/// Assign the key for the password the signin endpoint expects in the map
 ///  to [signInMapPasswordKey].
+///
+/// Specify the key for the mailid the signup endpoint expects in the map.
+///  to [signUpMapMailIDKey].
+///
+/// Specify the key for the password the signup endpoint expects in the map.
+///  to [signUpMapPasswordKey].
+///
+/// Specify the key for the user's name the signup endpoint expects in the map.
+///  to [signUpMapFullNameKey].
+///
+/// Specify the key for the user's mobile number the signup endpoint expects in the map.
+///  to [signUpMapMobileNumberKey].
 class SignInPage extends StatelessWidget {
   /// Signing in endpoint.
   final String signInLink;
@@ -38,15 +52,22 @@ class SignInPage extends StatelessWidget {
   ///  Defaults to true.
   final bool leadToSignUpPage;
 
-  /// Specify the key for the mailid the endpoint expects in the map.
+  /// Specify the key for the mailid the signin endpoint expects in the map.
   final String signInMapMailIDKey;
 
-  /// Specify the key for the password the endpoint expects in the map.
+  /// Specify the key for the password the signin endpoint expects in the map.
   final String signInMapPasswordKey;
 
+  /// Specify the key for the mailid the signup endpoint expects in the map.
   final String signUpMapMailIDKey;
+
+  /// Specify the key for the password the signup endpoint expects in the map.
   final String signUpMapPasswordKey;
+
+  /// Specify the key for the user's name the signup endpoint expects in the map.
   final String signUpMapFullNameKey;
+
+  /// Specify the key for the user's mobile number the signup endpoint expects in the map.
   final String signUpMapMobileNumberKey;
 
   const SignInPage({
@@ -79,6 +100,9 @@ class SignInPage extends StatelessWidget {
         ),
         body: Padding(
           padding: EdgeInsets.all(10),
+
+          /// Set default values to non-optional parameters
+          ///  in case of null.
           child: LoginForm(
             signInLink: signInLink,
             signUpLink: signUpLink,
@@ -95,16 +119,68 @@ class SignInPage extends StatelessWidget {
   }
 }
 
-// Full login Form
+/// Full login Form.
+///
+/// Signing in endpoint should be assigned to [signInLink].
+///
+/// Signing up endpoint should be assigned to [signUpLink].
+///
+/// App Name / The org to which the user is signing in or signing up
+///  should be assigned to [theAppName].
+///
+/// Assign false to [leadToSignUpPage] if loginform should not
+///  lead to signup page. By default it will be true.
+///
+/// Assign the key for the mailid the signin endpoint expects in the map
+///  to [signInMapMailIDKey].
+///
+/// Assign the key for the password the signin endpoint expects in the map
+///  to [signInMapPasswordKey].
+///
+/// Specify the key for the mailid the signup endpoint expects in the map.
+///  to [signUpMapMailIDKey].
+///
+/// Specify the key for the password the signup endpoint expects in the map.
+///  to [signUpMapPasswordKey].
+///
+/// Specify the key for the user's name the signup endpoint expects in the map.
+///  to [signUpMapFullNameKey].
+///
+/// Specify the key for the user's mobile number the signup endpoint expects in the map.
+///  to [signUpMapMobileNumberKey].
 class LoginForm extends StatefulWidget {
-  final String signInLink, signUpLink, theAppName;
-  final String signInMapMailIDKey;
-  final String signInMapPasswordKey;
-  final String signUpMapMailIDKey;
-  final String signUpMapPasswordKey;
-  final String signUpMapFullNameKey;
-  final String signUpMapMobileNumberKey;
+  /// Signing in endpoint.
+  final String signInLink;
+
+  /// Signing up endpoint.
+  final String signUpLink;
+
+  /// Mention the App name / The org to which
+  ///  the user is signing in or signing up.
+  final String theAppName;
+
+  /// Mention as bool if loginform
+  ///  should lead to signup page.
+  ///  Defaults to true.
   final bool leadToSignUpPage;
+
+  /// Specify the key for the mailid the signin endpoint expects in the map.
+  final String signInMapMailIDKey;
+
+  /// Specify the key for the password the signin endpoint expects in the map.
+  final String signInMapPasswordKey;
+
+  /// Specify the key for the mailid the signup endpoint expects in the map.
+  final String signUpMapMailIDKey;
+
+  /// Specify the key for the password the signup endpoint expects in the map.
+  final String signUpMapPasswordKey;
+
+  /// Specify the key for the user's name the signup endpoint expects in the map.
+  final String signUpMapFullNameKey;
+
+  /// Specify the key for the user's mobile number the signup endpoint expects in the map.
+  final String signUpMapMobileNumberKey;
   const LoginForm({
     Key key,
     @required this.signInLink,

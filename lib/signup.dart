@@ -5,10 +5,24 @@ import 'package:flutter/material.dart';
 import 'package:regauth/regauth_Widget.dart';
 import 'package:http/http.dart' as http;
 
+/// Signup page
+///
 /// Signing up endpoint should be assigned to [signUpLink].
 ///
 /// App Name / The org to which the user is signing in or signing up
 ///  should be assigned to [theAppName].
+///
+/// Specify the key for the mailid the signup endpoint expects in the map.
+///  to [signUpMapMailIDKey].
+///
+/// Specify the key for the password the signup endpoint expects in the map.
+///  to [signUpMapPasswordKey].
+///
+/// Specify the key for the user's name the signup endpoint expects in the map.
+///  to [signUpMapFullNameKey].
+///
+/// Specify the key for the user's mobile number the signup endpoint expects in the map.
+///  to [signUpMapMobileNumberKey].
 class SignUpPage extends StatelessWidget {
   /// Signing up endpoint.
   final String signUpLink;
@@ -17,16 +31,16 @@ class SignUpPage extends StatelessWidget {
   ///  the user is signing in or signing up.
   final String theAppName;
 
-  /// Specify the key for the mailid the endpoint expects in the map.
+  /// Specify the key for the mailid the signup endpoint expects in the map.
   final String signUpMapMailIDKey;
 
-  /// Specify the key for the password the endpoint expects in the map.
+  /// Specify the key for the password the signup endpoint expects in the map.
   final String signUpMapPasswordKey;
 
-  /// Specify the key for the full name the endpoint expects in the map.
+  /// Specify the key for the user's name the signup endpoint expects in the map.
   final String signUpMapFullNameKey;
 
-  /// Specify the key for the mobile number the endpoint expects in the map.
+  /// Specify the key for the user's mobile number the signup endpoint expects in the map.
   final String signUpMapMobileNumberKey;
 
   const SignUpPage({
@@ -68,12 +82,42 @@ class SignUpPage extends StatelessWidget {
   }
 }
 
-//Full Signup form
+/// Full Signup form.
+///
+/// Signing up endpoint should be assigned to [signUpLink].
+///
+/// App Name / The org to which the user is signing in or signing up
+///  should be assigned to [theAppName].
+///
+/// Specify the key for the mailid the signup endpoint expects in the map.
+///  to [signUpMapMailIDKey].
+///
+/// Specify the key for the password the signup endpoint expects in the map.
+///  to [signUpMapPasswordKey].
+///
+/// Specify the key for the user's name the signup endpoint expects in the map.
+///  to [signUpMapFullNameKey].
+///
+/// Specify the key for the user's mobile number the signup endpoint expects in the map.
+///  to [signUpMapMobileNumberKey].
 class SignUpForm extends StatefulWidget {
-  final String signUpLink, theAppName;
+  /// Signing up endpoint.
+  final String signUpLink;
+
+  /// Mention the App name / The org to which
+  ///  the user is signing in or signing up.
+  final String theAppName;
+
+  /// Specify the key for the mailid the signup endpoint expects in the map.
   final String signUpMapMailIDKey;
+
+  /// Specify the key for the password the signup endpoint expects in the map.
   final String signUpMapPasswordKey;
+
+  /// Specify the key for the user's name the signup endpoint expects in the map.
   final String signUpMapFullNameKey;
+
+  /// Specify the key for the user's mobile number the signup endpoint expects in the map.
   final String signUpMapMobileNumberKey;
   const SignUpForm({
     Key key,

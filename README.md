@@ -25,13 +25,15 @@ SignInForm(
     signInLink: "<signin endpoint>",
     signUpLink: "<signup endpoint>",
     theAppName: "<the app / Org name>",
-    leadToSignUpPage: false, //leave it blank or make it "true" to have link for SignUp page
-    signInMapMailIDKey: "mailId",
-    signInMapPasswordKey: "password",
-    signUpMapFullNameKey: "full_name",
-    signUpMapMobileNumberKey: "mobile",
-    signUpMapMailIDKey: "mailId",
-    signUpMapPasswordKey: "password",
+    leadToSignUpPage: false, // leave it blank or make it "true" to have link for SignUp page
+    signInMapMailIDKey: "mailId", // Specify the key for the mailid the signin endpoint expects in the map.
+    signInMapPasswordKey: "password", // Specify the key for the password the signin endpoint expects in the map.
+    
+    // leave [signUpMap*Key] parameters untouched, if [leadToSignUpPage] is not set to true.
+    signUpMapFullNameKey: "full_name", // Specify the key for the mailid the signup endpoint expects in the map.
+    signUpMapMobileNumberKey: "mobile", // Specify the key for the password the signup endpoint expects in the map.
+    signUpMapMailIDKey: "mailId", // Specify the key for the user's name the signup endpoint expects in the map.
+    signUpMapPasswordKey: "password", // Specify the key for the user's mobile number the signup endpoint expects in the map.
 ),
 ```
 
@@ -42,13 +44,15 @@ SignInPage(
     signInLink: "<signin endpoint>",
     signUpLink: "<signup endpoint>",
     theAppName: "<the app / Org name>",
-    leadToSignUpPage: false, //leave it blank or make it "true" to have link for SignUp page
-    signInMapMailIDKey: "mailId",
-    signInMapPasswordKey: "password",
-    signUpMapFullNameKey: "full_name",
-    signUpMapMobileNumberKey: "mobile",
-    signUpMapMailIDKey: "mailId",
-    signUpMapPasswordKey: "password",
+    leadToSignUpPage: false, // leave it blank or make it "true" to have link for SignUp page
+    signInMapMailIDKey: "mailId", // Specify the key for the mailid the signin endpoint expects in the map.
+    signInMapPasswordKey: "password", // Specify the key for the password the signin endpoint expects in the map.
+
+    // leave [signUpMap*Key] parameters untouched, if [leadToSignUpPage] is not set to true.
+    signUpMapFullNameKey: "full_name", // Specify the key for the mailid the signup endpoint expects in the map.
+    signUpMapMobileNumberKey: "mobile", // Specify the key for the password the signup endpoint expects in the map.
+    signUpMapMailIDKey: "mailId", // Specify the key for the user's name the signup endpoint expects in the map.
+    signUpMapPasswordKey: "password", // Specify the key for the user's mobile number the signup endpoint expects in the map.
 ),
 ```
 
