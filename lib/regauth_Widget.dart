@@ -74,8 +74,8 @@ class MobileNumberBox extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(10),
       child: IntlPhoneField(
-        validator: (String value) {
-          if (value.isEmpty) {
+        validator: (String? value) {
+          if (value!.isEmpty) {
             return 'Mobile Number is Required';
           } else if (value.length != 10) {
             return 'Mobile number is invalid';
@@ -99,7 +99,7 @@ class MobileNumberBox extends StatelessWidget {
         ],
         initialCountryCode: 'IN',
         onSaved: (value) {
-          mobileNum = value.completeNumber;
+          mobileNum = value!.completeNumber;
         },
       ),
     );

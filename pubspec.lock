@@ -105,7 +105,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: bf2cf7a17233f508cde338c36d856fa24622cb75
+      resolved-ref: "02e489f29600eb43666ac297fba1677cd7739936"
       url: "https://github.com/nibaji/intl_phone_field.git"
     source: git
     version: "1.4.2"
