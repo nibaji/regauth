@@ -13,9 +13,9 @@ dependencies:
     sdk: flutter
   intl_phone_field:
     git: https://github.com/nibaji/intl_phone_field.git
-  email_validator:
-  shared_preferences:
-  http:
+  email_validator: 2.0.0-nullsafety
+  shared_preferences: ^2.0.3
+  http: ^0.13.0
 
 dev_dependencies:
   flutter_test:
