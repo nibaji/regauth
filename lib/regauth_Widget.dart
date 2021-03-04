@@ -249,7 +249,12 @@ class FullNameBox extends StatelessWidget {
 class ForgotPwdFlatButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
+    return TextButton(
+      style: ButtonStyle(
+        overlayColor: MaterialStateProperty.all<Color>(
+          Theme.of(context).accentColor.withOpacity(.05),
+        ),
+      ),
       onPressed: () {
         // Navigator.push( //TODO: Forgot PWD Page
         //   context,
@@ -258,8 +263,12 @@ class ForgotPwdFlatButton extends StatelessWidget {
         //   ),
         // );
       },
-      textColor: Theme.of(context).accentColor,
-      child: Text('Forgot Password'),
+      child: Text(
+        'Forgot Password',
+        style: TextStyle(
+          color: Theme.of(context).accentColor,
+        ),
+      ),
     );
   }
 }
@@ -289,11 +298,18 @@ class IfNewSignupRow extends StatelessWidget {
       child: Row(
         children: <Widget>[
           Text('New to $theAppName?'),
-          FlatButton(
-            textColor: Theme.of(context).accentColor,
+          TextButton(
+            style: ButtonStyle(
+              overlayColor: MaterialStateProperty.all<Color>(
+                Theme.of(context).accentColor.withOpacity(.05),
+              ),
+            ),
             child: Text(
               'Sign up',
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(
+                fontSize: 20,
+                color: Theme.of(context).accentColor,
+              ),
             ),
             onPressed: () {
               Navigator.push(
@@ -330,11 +346,18 @@ class IfOldSignIn extends StatelessWidget {
       child: Row(
         children: <Widget>[
           Text('Already a member of $theAppName?'),
-          FlatButton(
-            textColor: Theme.of(context).accentColor,
+          TextButton(
+            style: ButtonStyle(
+              overlayColor: MaterialStateProperty.all<Color>(
+                Theme.of(context).accentColor.withOpacity(.05),
+              ),
+            ),
             child: Text(
               'Sign In',
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(
+                fontSize: 20,
+                color: Theme.of(context).accentColor,
+              ),
             ),
             onPressed: () {
               Navigator.pop(context);
