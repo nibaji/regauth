@@ -161,7 +161,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
     try {
       var signUpResponse = await http.post(
-        widget.signUpLink,
+        Uri.parse(widget.signUpLink),
         body: signUpData,
       );
 

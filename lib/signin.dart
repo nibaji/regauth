@@ -257,7 +257,7 @@ class _LoginFormState extends State<LoginForm> {
 
     try {
       var loginResponse = await http.post(
-        widget.signInLink,
+        Uri.parse(widget.signInLink),
         body: loginData,
       );
 
