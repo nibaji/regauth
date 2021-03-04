@@ -41,7 +41,7 @@ class SignInPage extends StatelessWidget {
   final String signInLink;
 
   /// Signing up endpoint.
-  final String signUpLink;
+  final String? signUpLink;
 
   /// Mention the App name / The org to which
   ///  the user is signing in or signing up.
@@ -50,7 +50,7 @@ class SignInPage extends StatelessWidget {
   /// Mention as bool if loginform
   ///  should lead to signup page.
   ///  Defaults to true.
-  final bool leadToSignUpPage;
+  final bool? leadToSignUpPage;
 
   /// Specify the key for the mailid the signin endpoint expects in the map.
   final String signInMapMailIDKey;
@@ -59,25 +59,25 @@ class SignInPage extends StatelessWidget {
   final String signInMapPasswordKey;
 
   /// Specify the key for the mailid the signup endpoint expects in the map.
-  final String signUpMapMailIDKey;
+  final String? signUpMapMailIDKey;
 
   /// Specify the key for the password the signup endpoint expects in the map.
-  final String signUpMapPasswordKey;
+  final String? signUpMapPasswordKey;
 
   /// Specify the key for the user's name the signup endpoint expects in the map.
-  final String signUpMapFullNameKey;
+  final String? signUpMapFullNameKey;
 
   /// Specify the key for the user's mobile number the signup endpoint expects in the map.
-  final String signUpMapMobileNumberKey;
+  final String? signUpMapMobileNumberKey;
 
   const SignInPage({
-    Key key,
-    @required this.signInLink,
+    Key? key,
+    required this.signInLink,
     this.signUpLink,
-    @required this.theAppName,
+    required this.theAppName,
     this.leadToSignUpPage,
-    @required this.signInMapMailIDKey,
-    @required this.signInMapPasswordKey,
+    required this.signInMapMailIDKey,
+    required this.signInMapPasswordKey,
     this.signUpMapMailIDKey,
     this.signUpMapPasswordKey,
     this.signUpMapFullNameKey,
@@ -111,7 +111,7 @@ class SignInPage extends StatelessWidget {
             signInMapMailIDKey: signInMapMailIDKey,
             signInMapPasswordKey: signInMapPasswordKey,
             signUpMapMailIDKey: signUpMapMailIDKey ?? "",
-            signUpMapPasswordKey: signInMapPasswordKey ?? "",
+            signUpMapPasswordKey: signInMapPasswordKey,
             signUpMapFullNameKey: signUpMapFullNameKey ?? "",
             signUpMapMobileNumberKey: signUpMapMobileNumberKey ?? "",
           ),
@@ -153,7 +153,7 @@ class LoginForm extends StatefulWidget {
   final String signInLink;
 
   /// Signing up endpoint.
-  final String signUpLink;
+  final String? signUpLink;
 
   /// Mention the App name / The org to which
   ///  the user is signing in or signing up.
@@ -182,17 +182,17 @@ class LoginForm extends StatefulWidget {
   /// Specify the key for the user's mobile number the signup endpoint expects in the map.
   final String signUpMapMobileNumberKey;
   const LoginForm({
-    Key key,
-    @required this.signInLink,
+    Key? key,
+    required this.signInLink,
     this.signUpLink,
-    @required this.theAppName,
-    @required this.leadToSignUpPage,
-    @required this.signInMapMailIDKey,
-    @required this.signInMapPasswordKey,
-    @required this.signUpMapMailIDKey,
-    @required this.signUpMapPasswordKey,
-    @required this.signUpMapFullNameKey,
-    @required this.signUpMapMobileNumberKey,
+    required this.theAppName,
+    required this.leadToSignUpPage,
+    required this.signInMapMailIDKey,
+    required this.signInMapPasswordKey,
+    required this.signUpMapMailIDKey,
+    required this.signUpMapPasswordKey,
+    required this.signUpMapFullNameKey,
+    required this.signUpMapMobileNumberKey,
   }) : super(key: key);
 
   @override
@@ -220,11 +220,11 @@ class _LoginFormState extends State<LoginForm> {
   ///
   /// [userMbl] Mobile number of the user.
   setLoggedIn({
-    bool isLoggedIn,
-    String theLoginToken,
-    String userName,
-    String userMail,
-    String userMbl,
+    required bool isLoggedIn,
+    required String theLoginToken,
+    required String userName,
+    required String userMail,
+    required String userMbl,
   }) async {
     /// Init sharedpreference and set the user details for future access.
     SharedPreferences thePrefs = await SharedPreferences.getInstance();
@@ -247,10 +247,10 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   goLogin({
-    String mailId,
-    String pwd,
-    String signInMapMailIDKey,
-    String signInMapPasswordKey,
+    String? mailId,
+    String? pwd,
+    String? signInMapMailIDKey,
+    String? signInMapPasswordKey,
   }) async {
     /// The Map that signing in endpoint requires
     Map loginData = {signInMapMailIDKey: mailId, signInMapPasswordKey: pwd};
@@ -292,9 +292,9 @@ class _LoginFormState extends State<LoginForm> {
             setLoggedIn(
               isLoggedIn: isLoggedIn,
               theLoginToken: jsonData["token"],
-              userName: theUserDetailsModel.fullName,
-              userMail: theUserDetailsModel.mail,
-              userMbl: theUserDetailsModel.mobileNum,
+              userName: theUserDetailsModel.fullName!,
+              userMail: theUserDetailsModel.mail!,
+              userMbl: theUserDetailsModel.mobileNum!,
             );
 
             /// Clear the login status msg once login is done.
@@ -378,10 +378,10 @@ class _LoginFormState extends State<LoginForm> {
                     loginStatus = "";
                   },
                 );
-                if (!_signInFormKey.currentState.validate()) {
+                if (!_signInFormKey.currentState!.validate()) {
                   return;
                 } else {
-                  _signInFormKey.currentState.save();
+                  _signInFormKey.currentState!.save();
                   setState(
                     () {
                       showProgress = true;
@@ -397,7 +397,7 @@ class _LoginFormState extends State<LoginForm> {
               },
             ),
           ),
-          if (widget.leadToSignUpPage ?? true)
+          if (widget.leadToSignUpPage)
             IfNewSignupRow(
               signUpLink: widget.signUpLink,
               theAppName: widget.theAppName,

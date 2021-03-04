@@ -13,8 +13,8 @@
 /// You might want to alter this as per the response you get.
 
 class LoginModel {
-  User user;
-  String token;
+  User? user;
+  String? token;
 
   LoginModel({this.user, this.token});
 
@@ -29,13 +29,13 @@ class LoginModel {
 
 class User {
   /// email
-  String mail;
+  String? mail;
 
   /// full name
-  String fullName;
+  String? fullName;
 
   /// mobile number
-  String mobileNum;
+  String? mobileNum;
 
   User({this.mail, this.fullName, this.mobileNum});
 

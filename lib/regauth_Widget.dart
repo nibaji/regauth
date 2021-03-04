@@ -4,26 +4,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
-String fullName = "";
-String mailId = "";
+String? fullName = "";
+String? mailId = "";
 String mobileNum = "";
 TextEditingController passwordController = TextEditingController();
-String pwd = "";
+String? pwd = "";
 TextEditingController passwordConfirmController = TextEditingController();
-String pwdConfirm = "";
+String? pwdConfirm = "";
 
 ///AppBar Title widget that gets [regAuthTitle].
 ///
 ///Only to use with indivitual login/signup forms and not with pages.
 class RegAuthAppBarTitle extends StatelessWidget {
   /// Title in for the Appbar.
-  final String regAuthTitle;
-  const RegAuthAppBarTitle({Key key, this.regAuthTitle}) : super(key: key);
+  final String? regAuthTitle;
+  const RegAuthAppBarTitle({Key? key, this.regAuthTitle}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      regAuthTitle,
+      regAuthTitle!,
       style: TextStyle(
         fontSize: 25,
         fontWeight: FontWeight.w900,
@@ -40,15 +40,15 @@ class EmailBox extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(10),
       child: TextFormField(
-        validator: (String value) {
-          if (value.isEmpty) {
+        validator: (String? value) {
+          if (value!.isEmpty) {
             return 'Email Id is Required';
           } else if (!EmailValidator.validate(value)) {
             return 'Please enter a valid email Address';
           } else
             return null;
         },
-        onSaved: (String value) {
+        onSaved: (String? value) {
           mailId = value;
         },
         decoration: InputDecoration(
@@ -114,13 +114,13 @@ class PwdBox extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(10),
       child: TextFormField(
-        validator: (String value) {
-          if (value.isEmpty) {
+        validator: (String? value) {
+          if (value!.isEmpty) {
             return 'Password is Required';
           } else
             return null;
         },
-        onSaved: (String value) {
+        onSaved: (String? value) {
           pwd = value;
         },
         obscureText: true,
@@ -146,8 +146,8 @@ class SignUpPwdBox extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(10),
       child: TextFormField(
-        validator: (String value) {
-          if (value.isEmpty) {
+        validator: (String? value) {
+          if (value!.isEmpty) {
             return 'Password is Required';
           } else if (value.length < 8) {
             return 'Password should atleast have 8 characters';
@@ -155,7 +155,7 @@ class SignUpPwdBox extends StatelessWidget {
             return null;
           }
         },
-        onSaved: (String value) {
+        onSaved: (String? value) {
           pwd = value;
         },
         obscureText: true,
@@ -182,8 +182,8 @@ class ConfirmPwdBox extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(10),
       child: TextFormField(
-        validator: (String value) {
-          if (value.isEmpty) {
+        validator: (String? value) {
+          if (value!.isEmpty) {
             return 'Password Confirmation is Required';
           } else if (passwordController.text !=
               passwordConfirmController.text) {
@@ -192,7 +192,7 @@ class ConfirmPwdBox extends StatelessWidget {
             return null;
           }
         },
-        onSaved: (String value) {
+        onSaved: (String? value) {
           pwdConfirm = value;
         },
         obscureText: true,
@@ -219,8 +219,8 @@ class FullNameBox extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(10),
       child: TextFormField(
-        validator: (String value) {
-          if (value.isEmpty) {
+        validator: (String? value) {
+          if (value!.isEmpty) {
             return 'Name is Required';
           } else if (value.length < 2) {
             return 'Name should atleast have 2 characters';
@@ -228,7 +228,7 @@ class FullNameBox extends StatelessWidget {
             return null;
           }
         },
-        onSaved: (String value) {
+        onSaved: (String? value) {
           fullName = value;
         },
         decoration: InputDecoration(
@@ -275,20 +275,20 @@ class ForgotPwdFlatButton extends StatelessWidget {
 
 /// "New to "THE APP"? SignUp" row in login form.
 class IfNewSignupRow extends StatelessWidget {
-  final String signUpLink;
+  final String? signUpLink;
   final String theAppName;
   final String signUpMapMailIDKey;
   final String signUpMapPasswordKey;
   final String signUpMapFullNameKey;
   final String signUpMapMobileNumberKey;
   const IfNewSignupRow({
-    Key key,
-    @required this.signUpLink,
-    @required this.theAppName,
-    @required this.signUpMapMailIDKey,
-    @required this.signUpMapPasswordKey,
-    @required this.signUpMapFullNameKey,
-    @required this.signUpMapMobileNumberKey,
+    Key? key,
+    required this.signUpLink,
+    required this.theAppName,
+    required this.signUpMapMailIDKey,
+    required this.signUpMapPasswordKey,
+    required this.signUpMapFullNameKey,
+    required this.signUpMapMobileNumberKey,
   }) : super(key: key);
 
   @override
@@ -337,7 +337,7 @@ class IfNewSignupRow extends StatelessWidget {
 /// "Already a member? SignIn" row in signup form.
 class IfOldSignIn extends StatelessWidget {
   final String theAppName;
-  const IfOldSignIn({Key key, @required this.theAppName}) : super(key: key);
+  const IfOldSignIn({Key? key, required this.theAppName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -372,8 +372,8 @@ class IfOldSignIn extends StatelessWidget {
 
 /// Status Message on submitted data as per http response.
 class RegAuthStatus extends StatelessWidget {
-  final String regAuthStatusMsg;
-  final bool isRegAuthSuccess;
+  final String? regAuthStatusMsg;
+  final bool? isRegAuthSuccess;
   RegAuthStatus({this.regAuthStatusMsg, this.isRegAuthSuccess});
 
   @override
@@ -381,10 +381,10 @@ class RegAuthStatus extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 14),
       child: Text(
-        regAuthStatusMsg,
+        regAuthStatusMsg!,
         style: TextStyle(
           fontSize: 14,
-          color: isRegAuthSuccess ? Colors.green : Colors.red,
+          color: isRegAuthSuccess! ? Colors.green : Colors.red,
         ),
         textAlign: TextAlign.center,
       ),
@@ -394,13 +394,13 @@ class RegAuthStatus extends StatelessWidget {
 
 /// Circular progress indicator at the bottom to indicate progress.
 class CircularProgressStatus extends StatelessWidget {
-  final bool showCircularProgress;
+  final bool? showCircularProgress;
   CircularProgressStatus({this.showCircularProgress});
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: showCircularProgress
+      child: showCircularProgress!
           ? CircularProgressIndicator(
               backgroundColor: Colors.orange,
               valueColor:

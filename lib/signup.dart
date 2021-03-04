@@ -25,7 +25,7 @@ import 'package:http/http.dart' as http;
 ///  to [signUpMapMobileNumberKey].
 class SignUpPage extends StatelessWidget {
   /// Signing up endpoint.
-  final String signUpLink;
+  final String? signUpLink;
 
   /// Mention the App name / The org to which
   ///  the user is signing in or signing up.
@@ -44,13 +44,13 @@ class SignUpPage extends StatelessWidget {
   final String signUpMapMobileNumberKey;
 
   const SignUpPage({
-    Key key,
-    @required this.signUpLink,
-    @required this.theAppName,
-    @required this.signUpMapMailIDKey,
-    @required this.signUpMapPasswordKey,
-    @required this.signUpMapFullNameKey,
-    @required this.signUpMapMobileNumberKey,
+    Key? key,
+    required this.signUpLink,
+    required this.theAppName,
+    required this.signUpMapMailIDKey,
+    required this.signUpMapPasswordKey,
+    required this.signUpMapFullNameKey,
+    required this.signUpMapMobileNumberKey,
   }) : super(key: key);
 
   @override
@@ -102,7 +102,7 @@ class SignUpPage extends StatelessWidget {
 ///  to [signUpMapMobileNumberKey].
 class SignUpForm extends StatefulWidget {
   /// Signing up endpoint.
-  final String signUpLink;
+  final String? signUpLink;
 
   /// Mention the App name / The org to which
   ///  the user is signing in or signing up.
@@ -120,13 +120,13 @@ class SignUpForm extends StatefulWidget {
   /// Specify the key for the user's mobile number the signup endpoint expects in the map.
   final String signUpMapMobileNumberKey;
   const SignUpForm({
-    Key key,
-    @required this.signUpLink,
-    @required this.theAppName,
-    @required this.signUpMapMailIDKey,
-    @required this.signUpMapPasswordKey,
-    @required this.signUpMapFullNameKey,
-    @required this.signUpMapMobileNumberKey,
+    Key? key,
+    required this.signUpLink,
+    required this.theAppName,
+    required this.signUpMapMailIDKey,
+    required this.signUpMapPasswordKey,
+    required this.signUpMapFullNameKey,
+    required this.signUpMapMobileNumberKey,
   }) : super(key: key);
 
   @override
@@ -142,14 +142,14 @@ class _SignUpFormState extends State<SignUpForm> {
   bool showProgress = false;
 
   goSignup({
-    String mailId,
-    String fullName,
-    String pwd,
-    String mobileNum,
-    String signUpMapMailIDKey,
-    String signUpMapPasswordKey,
-    String signUpMapFullNameKey,
-    String signUpMapMobileNumberKey,
+    String? mailId,
+    String? fullName,
+    String? pwd,
+    String? mobileNum,
+    String? signUpMapMailIDKey,
+    String? signUpMapPasswordKey,
+    String? signUpMapFullNameKey,
+    String? signUpMapMobileNumberKey,
   }) async {
     /// The Map that signing up endpoint expects.
     Map signUpData = {
@@ -161,7 +161,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
     try {
       var signUpResponse = await http.post(
-        Uri.parse(widget.signUpLink),
+        Uri.parse(widget.signUpLink!),
         body: signUpData,
       );
 
@@ -290,10 +290,10 @@ class _SignUpFormState extends State<SignUpForm> {
                     isSignedUp = false;
                   },
                 );
-                if (!_signUpFormKey.currentState.validate()) {
+                if (!_signUpFormKey.currentState!.validate()) {
                   return;
                 } else {
-                  _signUpFormKey.currentState.save();
+                  _signUpFormKey.currentState!.save();
                   setState(
                     () {
                       showProgress = true;
